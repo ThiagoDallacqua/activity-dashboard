@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import Board from './components/Board'
 
 const Container  = styled.div`
   height: 100vh;
@@ -11,7 +12,9 @@ const Container  = styled.div`
 
 const App = () => {
   return(
-      <Container> Hello there!</Container>
+      <Container>
+        <Board contributionsAmount />
+      </Container>
     );
 }
 
