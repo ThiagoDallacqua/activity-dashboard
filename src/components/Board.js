@@ -130,7 +130,16 @@ const WeekCell = styled.td`
     padding: 0;
 `
 
-const Board = () => {
+const Info = () => {
+    return (
+        <InfoContainer>
+            <Header>{`${ProcessedData.totalCount.toLocaleString()} contributions in 2016`}</Header>
+            <Settings>contributions settings</Settings>
+        </InfoContainer>
+    )
+}
+
+const ChartComponent = () => {
     const WeekRows = []
     for (const key in ProcessedData.weekDays) {
         if (["Sun", "Tue", "Thu", "Sat"].indexOf(key) != -1) {
@@ -149,33 +158,36 @@ const Board = () => {
                     {
                         ProcessedData.weekDays[key].map((day, index) => <Cell key={index} amount={day}></Cell>)
                     }
-                </Row> 
+                </Row>
             )
         }
     }
     return (
-        <Container>
-            <InfoContainer>
-                <Header>{`${ProcessedData.totalCount.toLocaleString()} contributions in 2016`}</Header>
-                <Settings>contributions settings</Settings>
-            </InfoContainer>
-            <ChartContainer>
-                <Chart>
-                    <THead>
-                        <Row>
-                            <HeadCell />
-                            {
-                                ProcessedData.months.map((month, index) => <HeadCell colSpan="3" key={index}>{month}</HeadCell>) 
-                            }
-                        </Row>
-                    </THead>
-                    <TBody>
+        <ChartContainer>
+            <Chart>
+                <THead>
+                    <Row>
+                        <HeadCell />
                         {
-                            WeekRows.map(week => week)
+                            ProcessedData.months.map((month, index) => <HeadCell colSpan="3" key={index}>{month}</HeadCell>)
                         }
-                    </TBody>
-                </Chart>
-            </ChartContainer>
+                    </Row>
+                </THead>
+                <TBody>
+                    {
+                        WeekRows.map(week => week)
+                    }
+                </TBody>
+            </Chart>
+        </ChartContainer>
+    )
+}
+
+const Board = () => {
+    return (
+        <Container>
+            <Info />
+            <ChartComponent />
         </Container>
     )
 }
