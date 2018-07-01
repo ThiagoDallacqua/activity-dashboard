@@ -26,9 +26,7 @@ const ProcessedData = Data.reduce((acc, currValue, currIndex, arr) => {
     let prevDay
     if (currIndex !== 0) {
         prevMonth = months[arr[currIndex - 1].date.split('-')[1] - 1]
-        prevDay = arr[currIndex - 1].date.split('-')[2] - 1
-
-        
+        prevDay = arr[currIndex - 1].date.split('-')[2] - 1        
     }
 
     if (month === prevMonth && day === prevDay + 1) {
